@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/template.xhtml">
+    <ui:define name="content">
+        <h2>Card</h2>
+        <h:form>
+            <h:dataTable>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="Processor Quad" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    <h:outputText value="Price" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Count</f:facet>
+                    <h:inputText value="1" size="3" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Recalculate</f:facet>
+                    <h:commandButton value="Recalculate" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton value="Delete" />
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="Go to cash desk" />
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>
