@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static devcast.entities.builders.UserBuilder.anUser;
+
 /**
  * @author mzielinski on 15.12.14.
  */
@@ -30,6 +32,9 @@ public class Order {
     }
 
     public User getUser() {
+        if (user == null) {
+            user = anUser().build();
+        }
         return user;
     }
 

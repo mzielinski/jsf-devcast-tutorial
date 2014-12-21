@@ -2,21 +2,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/template.xhtml">
     <ui:define name="content">
         <h2>Finish Order</h2>
-        <h:panelGrid columns="2">
-            <h:outputText value="First Name:"/>
-            <h:inputText value="#{cardValueBean.order.user.firstName}"/>
-            <h:outputText value="Last name:"/>
-            <h:inputText value="#{cardValueBean.order.user.lastName}"/>
-            <h:outputText value="Address:"/>
-            <h:inputTextarea value="#{cardValueBean.order.user.address}"/>
-            <h:outputText value=""/>
-            <h:commandButton value="Finish"/>
-        </h:panelGrid>
+        <h:form id="finishOrderFormId">
+            <h:messages styleClass="error"/>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="firstName" value="Email:"/>
+                <h:inputText id="email" value="#{cardValueBean.order.user.email}" required="true">
+                    <f:validator validatorId="emailValidator" />
+                </h:inputText>
+                <h:outputLabel for="firstName" value="First Name:"/>
+                <h:inputText id="firstName" value="#{cardValueBean.order.user.firstName}" required="true">
+                    <f:validateLength minimum="2" maximum="20"/>
+                </h:inputText>
+                <h:outputLabel for="lastName" value="Last name:"/>
+                <h:inputText id="lastName" value="#{cardValueBean.order.user.lastName}" required="true">
+                    <f:validateLength minimum="2" maximum="20"/>
+                </h:inputText>
+                <h:outputLabel for="address" value="Address:"/>
+                <h:inputTextarea id="address" value="#{cardValueBean.order.user.address}" required="true"/>
+                <h:outputText value=""/>
+                <h:commandButton value="Finish"/>
+            </h:panelGrid>
+        </h:form>
     </ui:define>
 </ui:composition>
 

@@ -9,17 +9,17 @@
     <ui:define name="content">
         <h3>Hello in internet store!</h3>
         <h:panelGrid columnClasses="cell" columns="2">
-            <ui:include src="/catergories.xhtml"/>
+            <ui:include src="/categories.xhtml"/>
             <h:panelGroup>
                 <h:form>
                     <h4>Your card</h4>
                     <h:commandLink value="Go"/>
                     <h4>Go to selected product...</h4>
-                    <h:selectOneMenu>
-                        <f:selectItems value="#{productValueBean.allProducts}" var="product"
-                                       itemLabel="#{product.name}" itemValue="#{product.id}"/>
+                    <h:selectOneMenu value="#{topProductsValueBean.selectedProduct}">
+                        <f:selectItems value="#{topProductsValueBean.topProducts}" />
+                        <f:converter converterId="productConverter" />
                     </h:selectOneMenu>
-                    <h:commandButton value="Go"/>
+                    <h:commandButton value="Go" action="productDetails.xhtml"/>
                 </h:form>
             </h:panelGroup>
         </h:panelGrid>
