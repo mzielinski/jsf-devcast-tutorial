@@ -2,8 +2,8 @@ package devcast.beans;
 
 import devcast.entities.Product;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
  * @author mzielinski on 16.12.14.
  */
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 public class TopProductsValueBean implements Serializable {
 
     private Product selectedProduct;

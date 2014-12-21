@@ -9,7 +9,7 @@
         <h4>Categories</h4>
         <ul>
             <ui:repeat value="#{categoryValueBean.categoryModel}" var="category">
-                <li><h:commandLink value="#{category.name}"/></li>
+                <li><h:commandLink value="#{category.name}" action="products.xhtml"/></li>
             </ui:repeat>
         </ul>
     </h:form>

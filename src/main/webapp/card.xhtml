@@ -32,10 +32,10 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Delete</f:facet>
-                    <h:commandButton value="Delete"/>
+                    <h:commandButton value="Delete" action="#{cardController.deleteElement}"/>
                 </h:column>
             </h:dataTable>
-            <h:commandButton value="Go to cash desk"/>
+            <h:commandButton value="Go to cash desk" action="finish"/>
         </h:form>
     </ui:define>
 </ui:composition>

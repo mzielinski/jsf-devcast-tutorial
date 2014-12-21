@@ -15,7 +15,7 @@
             </h:outputFormat>
             <h:outputText value="Description:"/>
             <h:outputText value="#{productDetailsValueBean.selectedProduct.description}"/>
-            <h:commandButton value="Add to card">
+            <h:commandButton value="Add to card" action="#{cardController.addToCard}">
                 <f:param name="productId" value="#{productDetailsValueBean.selectedProduct.id}"/>
             </h:commandButton>
         </h:panelGrid>

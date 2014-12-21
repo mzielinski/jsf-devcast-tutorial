@@ -13,13 +13,15 @@
             <h:panelGroup>
                 <h:form>
                     <h4>Your card</h4>
-                    <h:commandLink value="Go"/>
+                    <h:commandLink value="Go" action="card.xhtml"/>
                     <h4>Go to selected product...</h4>
                     <h:selectOneMenu value="#{topProductsValueBean.selectedProduct}">
                         <f:selectItems value="#{topProductsValueBean.topProducts}" />
                         <f:converter converterId="productConverter" />
                     </h:selectOneMenu>
-                    <h:commandButton value="Go" action="productDetails.xhtml"/>
+                    <h:commandButton value="Go" action="productDetails.xhtml">
+
+                    </h:commandButton>
                 </h:form>
             </h:panelGroup>
         </h:panelGrid>

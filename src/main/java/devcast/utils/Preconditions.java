@@ -11,4 +11,9 @@ public class Preconditions {
         }
     }
 
+    public static void notNull(Object object, String fieldName) {
+        if (object == null) {
+            throw new IllegalArgumentException(String.format("Field [%s] should be null", fieldName));
+        }
+    }
 }

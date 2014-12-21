@@ -19,6 +19,9 @@ public class ProductDetailsValueBean {
     @ManagedProperty("#{param.id}")
     private int productId;
 
+    @ManagedProperty("#{topProductsValueBean}")
+    private TopProductsValueBean topProductsValueBean;
+
     public int getProductId() {
         return productId;
     }
@@ -36,6 +39,18 @@ public class ProductDetailsValueBean {
 
     public void setSelectedProduct(Product selectedProduct) {
         this.selectedProduct = selectedProduct;
+    }
+
+    public TopProductsValueBean getTopProductsValueBean() {
+        return topProductsValueBean;
+    }
+
+    public void setTopProductsValueBean(TopProductsValueBean topProductsValueBean) {
+        this.topProductsValueBean = topProductsValueBean;
+        final Product selectedProduct = topProductsValueBean.getSelectedProduct();
+        if (selectedProduct != null) {
+            this.selectedProduct = selectedProduct;
+        }
     }
 
 }

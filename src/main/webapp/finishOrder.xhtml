@@ -26,7 +26,7 @@
                 <h:outputLabel for="address" value="Address:"/>
                 <h:inputTextarea id="address" value="#{cardValueBean.order.user.address}" required="true"/>
                 <h:outputText value=""/>
-                <h:commandButton value="Finish"/>
+                <h:commandButton value="Finish" action="#{cardController.finishOrder}"/>
             </h:panelGrid>
         </h:form>
     </ui:define>

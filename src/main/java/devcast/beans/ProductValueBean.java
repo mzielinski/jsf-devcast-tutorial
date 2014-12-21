@@ -23,7 +23,7 @@ public class ProductValueBean implements Serializable {
     private int page = 0;
 
     public ProductValueBean() {
-        productModel.setWrappedData(DAO_INSTANCE.findProductsByCategory(category, page * PAGE_SIZE, PAGE_SIZE));
+        retrieveProductList();
     }
 
     public boolean isPrevious() {
@@ -33,6 +33,22 @@ public class ProductValueBean implements Serializable {
     public boolean isNext() {
         final Double maxPage = Math.ceil(DAO_INSTANCE.countProducts(category)) / PAGE_SIZE;
         return page < maxPage.intValue();
+    }
+
+    public String gotoNextPage() {
+        page++;
+        retrieveProductList();
+        return "";
+    }
+
+    public String gotoPreviousPage() {
+        page--;
+        retrieveProductList();
+        return "";
+    }
+
+    private void retrieveProductList() {
+        productModel.setWrappedData(DAO_INSTANCE.findProductsByCategory(category, page * PAGE_SIZE, PAGE_SIZE));
     }
 
     public ListDataModel<Product> getProductModel() {

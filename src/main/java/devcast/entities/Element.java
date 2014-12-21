@@ -14,6 +14,10 @@ public class Element {
     private Product product;
     private Order order;
 
+    public void increaseCount() {
+        count++;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
