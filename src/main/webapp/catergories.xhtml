@@ -8,8 +8,9 @@
     <h:form>
         <h4>Categories</h4>
         <ul>
-            <li><h:commandLink value="Processors"/></li>
-            <li><h:commandLink value="Covers"/></li>
+            <ui:repeat value="#{categoryValueBean.categoryModel}" var="category">
+                <li><h:commandLink value="#{category.name}"/></li>
+            </ui:repeat>
         </ul>
     </h:form>
 </ui:component>

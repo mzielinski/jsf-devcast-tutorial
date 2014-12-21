@@ -10,6 +10,7 @@ import devcast.entities.beans.Money;
 public class ProductBuilder {
 
     private long id;
+    private String name;
     private Category category;
     private Money amount;
     private String description;
@@ -42,6 +43,12 @@ public class ProductBuilder {
         return this;
     }
 
+
+    public ProductBuilder withName(String name) {
+        this.name = name;
+        return this;
+    }
+
     public ProductBuilder withCount(int count) {
         this.count = count;
         return this;
@@ -56,6 +63,7 @@ public class ProductBuilder {
         product.setId(id);
         product.setCategory(category);
         product.setAmount(amount);
+        product.setName(name);
         product.setDescription(description);
         product.setCount(count);
         return product;

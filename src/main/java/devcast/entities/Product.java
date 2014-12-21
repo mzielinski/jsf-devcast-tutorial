@@ -8,6 +8,7 @@ import devcast.entities.beans.Money;
 public class Product {
 
     private long id;
+    private String name;
     private Category category;
     private Money amount;
     private String description;
@@ -65,5 +66,13 @@ public class Product {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

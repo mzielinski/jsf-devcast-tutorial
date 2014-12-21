@@ -11,6 +11,7 @@ public class Order {
 
     private long id;
     private Date createDate;
+    private User user;
     private List<Element> elements;
 
     @Override
@@ -26,6 +27,14 @@ public class Order {
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {

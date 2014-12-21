@@ -9,11 +9,11 @@
         <h2>Finish Order</h2>
         <h:panelGrid columns="2">
             <h:outputText value="First Name:"/>
-            <h:inputText/>
+            <h:inputText value="#{cardValueBean.order.user.firstName}"/>
             <h:outputText value="Last name:"/>
-            <h:inputText/>
+            <h:inputText value="#{cardValueBean.order.user.lastName}"/>
             <h:outputText value="Address:"/>
-            <h:inputTextarea/>
+            <h:inputTextarea value="#{cardValueBean.order.user.address}"/>
             <h:outputText value=""/>
             <h:commandButton value="Finish"/>
         </h:panelGrid>

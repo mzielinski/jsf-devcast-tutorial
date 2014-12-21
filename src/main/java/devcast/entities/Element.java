@@ -2,6 +2,8 @@ package devcast.entities;
 
 import devcast.entities.beans.Money;
 
+import java.math.BigDecimal;
+
 /**
  * @author mzielinski on 15.12.14.
  */
@@ -63,4 +65,8 @@ public class Element {
         this.order = order;
     }
 
+    public Money getTotal() {
+        final BigDecimal total = getAmount().getValue().multiply(new BigDecimal(count));
+        return new Money(total);
+    }
 }

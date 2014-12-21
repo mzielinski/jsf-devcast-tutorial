@@ -7,17 +7,29 @@
 
 <ui:composition template="/template.xhtml">
     <ui:define name="content">
-        <h2>List of all products for category software</h2>
-        <h:dataTable id="productTable">
+        <h2>List of all products for category #{productValueBean.category.name}</h2>
+        <h:dataTable id="productTable" value="#{productValueBean.productModel}" var="product">
             <h:column>
                 <f:facet name="header">Name</f:facet>
-                <h:outputText value="Name"/>
+                <h:outputLink value="/productDetails.xhtml">
+                    <f:param name="id" value="#{product.id}" />
+                    <h:outputText value="#{product.name}"/>
+                </h:outputLink>
             </h:column>
             <h:column>
                 <f:facet name="header">Price</f:facet>
-                <h:outputText value="Price"/>
+                <h:outputFormat value="#{product.amount.value}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Add to card</f:facet>
+                <h:commandButton value="Add" />
             </h:column>
         </h:dataTable>
+        <h:commandLink rendered="#{productValueBean.previous}" value="&laquo;"/>
+        <h:commandLink rendered="#{productValueBean.next}"  value="&raquo;"/>
+        <br/>
+        <h:commandButton value="Go to card"/>
+        <h:commandButton value="Main page"/>
     </ui:define>
 </ui:composition>
 

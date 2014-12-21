@@ -16,8 +16,8 @@
                     <h:commandLink value="Go"/>
                     <h4>Go to selected product...</h4>
                     <h:selectOneMenu>
-                        <f:selectItem itemLabel="Processor Quad" itemValue="processor_quad"/>
-                        <f:selectItem itemLabel="Processor Dual" itemValue="processor_dual"/>
+                        <f:selectItems value="#{productValueBean.allProducts}" var="product"
+                                       itemLabel="#{product.name}" itemValue="#{product.id}"/>
                     </h:selectOneMenu>
                     <h:commandButton value="Go"/>
                 </h:form>

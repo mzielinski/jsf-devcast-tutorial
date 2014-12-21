@@ -9,18 +9,22 @@
     <ui:define name="content">
         <h2>Card</h2>
         <h:form>
-            <h:dataTable>
+            <h:dataTable value="#{cardValueBean.order.elements}" var="element">
                 <h:column>
                     <f:facet name="header">Name</f:facet>
-                    <h:outputText value="Processor Quad"/>
+                    <h:outputText value="#{element.product.name}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Price</f:facet>
-                    <h:outputText value="Price"/>
+                    <h:outputText value="#{element.amount.value}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Count</f:facet>
-                    <h:inputText value="1" size="3"/>
+                    <h:inputText value="#{element.count}" size="3"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Total</f:facet>
+                    <h:outputText id="total" value="#{element.total}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Recalculate</f:facet>
