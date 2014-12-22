@@ -8,8 +8,8 @@
 <ui:composition template="/template.xhtml">
     <ui:define name="content">
         <h2>Card</h2>
-        <h:form>
-            <h:dataTable value="#{cardValueBean.order.elements}" var="element">
+        <h:form prependId="false">
+            <h:dataTable id="cardTable" value="#{cardValueBean.order.elements}" var="element">
                 <h:column>
                     <f:facet name="header">Name</f:facet>
                     <h:outputText value="#{element.product.name}"/>
@@ -20,7 +20,9 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Count</f:facet>
-                    <h:inputText value="#{element.count}" size="3"/>
+                    <h:inputText value="#{element.count}" size="3">
+                        <f:ajax render="total" execute="@form" event="keyup" />
+                    </h:inputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Total</f:facet>
@@ -30,12 +32,14 @@
                     <f:facet name="header">Recalculate</f:facet>
                     <h:commandButton value="Recalculate">
                         <f:setPropertyActionListener value="#{element}" target="#{cardValueBean.selectedElement}"/>
+                        <f:ajax render="total" execute="@form" event="action" />
                     </h:commandButton>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Delete</f:facet>
                     <h:commandButton value="Delete" action="#{cardController.deleteElement}">
                         <f:setPropertyActionListener value="#{element}" target="#{cardValueBean.selectedElement}"/>
+                        <f:ajax render="@form" execute="@form" />
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
