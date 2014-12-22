@@ -2,14 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:component>
     <h:form>
         <h4>Categories</h4>
         <ul>
             <ui:repeat value="#{categoryValueBean.categoryModel}" var="category">
-                <li><h:commandLink value="#{category.name}" action="products.xhtml"/></li>
+                <li><h:commandLink value="#{category.name}" action="products.xhtml">
+                    <f:setPropertyActionListener value="#{category}" target="#{productValueBean.category}"/>
+                </h:commandLink></li>
             </ui:repeat>
         </ul>
     </h:form>

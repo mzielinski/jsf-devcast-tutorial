@@ -24,17 +24,22 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Total</f:facet>
-                    <h:outputText id="total" value="#{element.total}"/>
+                    <h:outputText id="total" value="#{element.total.value}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Recalculate</f:facet>
-                    <h:commandButton value="Recalculate"/>
+                    <h:commandButton value="Recalculate">
+                        <f:setPropertyActionListener value="#{element}" target="#{cardValueBean.selectedElement}"/>
+                    </h:commandButton>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Delete</f:facet>
-                    <h:commandButton value="Delete" action="#{cardController.deleteElement}"/>
+                    <h:commandButton value="Delete" action="#{cardController.deleteElement}">
+                        <f:setPropertyActionListener value="#{element}" target="#{cardValueBean.selectedElement}"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
+            <h:commandButton value="Main page" action="index.xhtml"/>
             <h:commandButton value="Go to cash desk" action="finish"/>
         </h:form>
     </ui:define>

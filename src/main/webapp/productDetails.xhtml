@@ -7,18 +7,20 @@
 
 <ui:composition template="/template.xhtml">
     <ui:define name="content">
-        <h2><h:outputText value="#{productDetailsValueBean.selectedProduct.name}"/></h2>
-        <h:panelGrid columns="2" border="1">
-            <h:outputText value="Price:"/>
-            <h:outputFormat value="{0} USD">
-                <f:param value="#{productDetailsValueBean.selectedProduct.amount.value}"/>
-            </h:outputFormat>
-            <h:outputText value="Description:"/>
-            <h:outputText value="#{productDetailsValueBean.selectedProduct.description}"/>
-            <h:commandButton value="Add to card" action="#{cardController.addToCard}">
-                <f:param name="productId" value="#{productDetailsValueBean.selectedProduct.id}"/>
-            </h:commandButton>
-        </h:panelGrid>
+        <h:form>
+            <h2><h:outputText value="#{productDetailsValueBean.selectedProduct.name}"/></h2>
+            <h:panelGrid columns="2" border="1">
+                <h:outputText value="Price:"/>
+                <h:outputFormat value="{0} USD">
+                    <f:param value="#{productDetailsValueBean.selectedProduct.amount.value}"/>
+                </h:outputFormat>
+                <h:outputText value="Description:"/>
+                <h:outputText value="#{productDetailsValueBean.selectedProduct.description}"/>
+                <h:commandButton value="Add to card" actionListener="#{cardController.actionListener}" action="#{cardController.addToCard}">
+                    <f:param name="productId" value="#{productDetailsValueBean.selectedProduct.id}"/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
     </ui:define>
 </ui:composition>
 

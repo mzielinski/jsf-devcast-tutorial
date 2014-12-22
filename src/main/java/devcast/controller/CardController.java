@@ -8,6 +8,10 @@ import devcast.entities.Product;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,13 +26,13 @@ import static java.util.stream.Collectors.toList;
  */
 @ManagedBean
 @RequestScoped
-public class CardController {
+public class CardController implements Serializable {
 
     @ManagedProperty("#{cardValueBean}")
     private CardValueBean cardValueBean;
 
     public String finishOrder() {
-        DAO_INSTANCE.addOrder(cardValueBean.getOrder());
+        DAO_INSTANCE.processOrder(cardValueBean.getOrder());
         cardValueBean.resetOrder();
         return "success";
     }
@@ -42,25 +46,42 @@ public class CardController {
         return "";
     }
 
+    public void actionListener(ActionEvent event) {
+        final ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        final String productId = context.getRequestParameterMap().get("productId");
+        final Optional<Product> selectedProduct = DAO_INSTANCE.findProductById(Integer.parseInt(productId));
+        cardValueBean.setSelectedProduct(selectedProduct.get());
+    }
+
     public String addToCard() {
         notNull(cardValueBean.getSelectedProduct(), "selected product");
         notNull(cardValueBean.getOrder(), "order");
 
         final Product selectedProduct = cardValueBean.getSelectedProduct();
-        final Optional<Element> selectedElement = cardValueBean.getOrder().getElements().stream()
-                .filter(element -> Objects.equals(element.getProduct(), selectedProduct))
-                .findFirst();
-        if (selectedElement.isPresent()) {
-            selectedElement.get().increaseCount();
+        final List<Element> allElements = cardValueBean.getOrder().getElements();
+        final Optional<Element> productFromOrder = findElementForSelectedProduct(selectedProduct, allElements);
+        if (productFromOrder.isPresent()) {
+            productFromOrder.get().increaseCount();
         } else {
-            cardValueBean.getOrder().getElements().add(anElement()
-                    .withAmount(selectedProduct.getAmount())
-                    .withProduct(selectedProduct)
-                    .withOrder(cardValueBean.getOrder())
-                    .withCount(1)
-                    .build());
+            final Element newElement = buildNewElement(selectedProduct, cardValueBean.getOrder());
+            allElements.add(newElement);
         }
         return "card.xhtml";
+    }
+
+    private Optional<Element> findElementForSelectedProduct(Product selectedProduct, List<Element> allElements) {
+        return allElements.stream()
+                .filter(element -> Objects.equals(element.getProduct(), selectedProduct))
+                .findFirst();
+    }
+
+    private Element buildNewElement(Product selectedProduct, Order order) {
+        return anElement()
+                .withAmount(selectedProduct.getAmount())
+                .withProduct(selectedProduct)
+                .withOrder(order)
+                .withCount(1)
+                .build();
     }
 
     public CardValueBean getCardValueBean() {
@@ -70,5 +91,6 @@ public class CardController {
     public void setCardValueBean(CardValueBean cardValueBean) {
         this.cardValueBean = cardValueBean;
     }
+
 
 }

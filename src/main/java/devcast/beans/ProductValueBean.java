@@ -65,6 +65,8 @@ public class ProductValueBean implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+        this.page = 0;
+        retrieveProductList();
     }
 
     public int getPage() {

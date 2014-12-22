@@ -6,13 +6,14 @@ import devcast.entities.Product;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
 
 /**
  * @author mzielinski on 21.12.14.
  */
 @ManagedBean
 @RequestScoped
-public class ProductDetailsValueBean {
+public class ProductDetailsValueBean implements Serializable {
 
     private Product selectedProduct;
 

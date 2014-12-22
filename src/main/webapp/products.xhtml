@@ -23,11 +23,15 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Add to card</f:facet>
-                    <h:commandButton value="Add" action="#{cardController.addToCard}"/>
+                    <h:commandButton value="Add" action="#{cardController.addToCard}">
+                        <f:setPropertyActionListener value="#{product}" target="#{cardValueBean.selectedProduct}"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
-            <h:commandLink rendered="#{productValueBean.previous}" value="&laquo;" action="#{productValueBean.gotoPreviousPage}"/>
-            <h:commandLink rendered="#{productValueBean.next}" value="&raquo;" action="#{productValueBean.gotoNextPage}"/>
+            <h:commandLink rendered="#{productValueBean.previous}" value="&laquo;"
+                           action="#{productValueBean.gotoPreviousPage}"/>
+            <h:commandLink rendered="#{productValueBean.next}" value="&raquo;"
+                           action="#{productValueBean.gotoNextPage}"/>
             <br/>
             <h:commandButton value="Go to card" action="card.xhtml"/>
             <h:commandButton value="Main page" action="index.xhtml"/>

@@ -43,7 +43,7 @@ public enum GeneralDao {
                         .withAmount(new Money(120))
                         .withCategory(memory)
                         .withCount(5)
-                        .withDescription("Description DDR Memeory")
+                        .withDescription("Description DDR Memory")
                         .build()
         );
     }
@@ -52,7 +52,7 @@ public enum GeneralDao {
         // Processors Category
         final Category processors = aCategory().withId(1).withName("Processors").build();
         products.add(ProductBuilder.aProduct()
-                        .withId(1)
+                        .withId(2)
                         .withName("Processor Single")
                         .withAmount(new Money(350))
                         .withCategory(processors)
@@ -61,7 +61,7 @@ public enum GeneralDao {
                         .build()
         );
         products.add(ProductBuilder.aProduct()
-                        .withId(2)
+                        .withId(3)
                         .withName("Processor Dual")
                         .withAmount(new Money(450))
                         .withCategory(processors)
@@ -70,7 +70,7 @@ public enum GeneralDao {
                         .build()
         );
         products.add(ProductBuilder.aProduct()
-                        .withId(3)
+                        .withId(4)
                         .withName("Processor Quad")
                         .withAmount(new Money(763))
                         .withCategory(processors)
@@ -79,13 +79,6 @@ public enum GeneralDao {
                         .build()
         );
         categories.add(processors);
-    }
-
-    /**
-     * @return all products
-     */
-    public List<Product> findAllProducts() {
-        return findProductsByCategory(null, 0, products.size());
     }
 
     /**
@@ -156,7 +149,7 @@ public enum GeneralDao {
     /**
      * @return find top products
      */
-    public List<Product> findTopProducts() {
+    public List<Product> findTwoTopProducts() {
         return products.stream()
                 .limit(2)
                 .collect(toList());
@@ -167,7 +160,7 @@ public enum GeneralDao {
      *
      * @param order order which will be added
      */
-    public void addOrder(Order order) {
+    public void processOrder(Order order) {
         orders.add(order);
     }
 

@@ -10,10 +10,28 @@
         <h2>Finish Order</h2>
         <h:form id="finishOrderFormId">
             <h:messages styleClass="error"/>
+            <h:dataTable value="#{cardValueBean.order.elements}" var="element">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{element.product.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    <h:outputText value="#{element.amount.value}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Count</f:facet>
+                    <h:outputText value="#{element.count}" size="3"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Total</f:facet>
+                    <h:outputText id="total" value="#{element.total.value}"/>
+                </h:column>
+            </h:dataTable>
             <h:panelGrid columns="2">
                 <h:outputLabel for="firstName" value="Email:"/>
                 <h:inputText id="email" value="#{cardValueBean.order.user.email}" required="true">
-                    <f:validator validatorId="emailValidator" />
+                    <f:validator validatorId="emailValidator"/>
                 </h:inputText>
                 <h:outputLabel for="firstName" value="First Name:"/>
                 <h:inputText id="firstName" value="#{cardValueBean.order.user.firstName}" required="true">
@@ -26,7 +44,10 @@
                 <h:outputLabel for="address" value="Address:"/>
                 <h:inputTextarea id="address" value="#{cardValueBean.order.user.address}" required="true"/>
                 <h:outputText value=""/>
-                <h:commandButton value="Finish" action="#{cardController.finishOrder}"/>
+                <h:panelGroup>
+                    <h:commandButton value="Cancel" action="index.xhtml" immediate="true"/>
+                    <h:commandButton value="Finish" action="#{cardController.finishOrder}"/>
+                </h:panelGroup>
             </h:panelGrid>
         </h:form>
     </ui:define>

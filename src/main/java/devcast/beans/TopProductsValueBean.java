@@ -22,7 +22,7 @@ public class TopProductsValueBean implements Serializable {
     private List<SelectItem> topProducts;
 
     public TopProductsValueBean() {
-        topProducts = DAO_INSTANCE.findTopProducts().stream()
+        topProducts = DAO_INSTANCE.findTwoTopProducts().stream()
             .map(product -> new SelectItem(product, product.getName()))
             .collect(toList());
     }
